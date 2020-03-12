@@ -14,6 +14,6 @@ Example: selectOptions = [
 
 Component name is paginator. To test paginator you should use component that called testComponent.
 
-##Good luck!
+## Good luck!
 Designed by via.shcherba
 12.03.2020
