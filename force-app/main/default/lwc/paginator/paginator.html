@@ -1,0 +1,59 @@
+<!--/* Designed by via.shcherba */-->
+<template>
+    <lightning-layout class="slds-p-vertical_small slds-p-horizontal_small">
+        <lightning-layout-item>
+            <lightning-button label={labels.firstPageLbl} icon-name="utility:chevronleft"
+                disabled 
+                onclick={firstPage} 
+                class="slds-p-horizontal_xx-small"
+                >
+            </lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label={labels.previousLbl} icon-name="utility:chevronleft" 
+                disabled 
+                onclick={previousPage} 
+                class="slds-p-horizontal_xx-small"
+                >
+            </lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item flexibility="auto">
+            <div class="center center-element">
+                <select class="slds-select slds-text-color_success slds-m-left_large" onchange={changePageSize}>   
+                    <template if:true={selectOptions}>                 
+                        <template for:each={selectOptions} for:item="option">
+                            <option key={option.key} value={option.value}>{option.label}</option>
+                        </template>   
+                    </template>  
+                    <template if:false={selectOptions}>                 
+                        <template for:each={selectOptionsDefault} for:item="option">
+                            <option key={option.key} value={option.value}>{option.label}</option>
+                        </template>   
+                    </template>                    
+                </select> 
+                <div class="from-element">
+                    <p>{currentPage}</p>
+                </div>
+                <div class="to-element">
+                    <p>{numberPages}</p>
+                </div>
+            </div>
+        </lightning-layout-item>   
+        <lightning-layout-item alignment-bump="left">
+            <lightning-button label={labels.nextLbl} name="Next" icon-name="utility:chevronright"             
+                icon-position="right" 
+                onclick={nextPage} 
+                class="slds-p-horizontal_xx-small"
+                >
+            </lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label={labels.lastPageLbl} icon-name="utility:chevronright" 
+                icon-position="right" 
+                onclick={lastPage} 
+                class="slds-p-horizontal_xx-small"
+                >
+            </lightning-button>
+        </lightning-layout-item>                 
+    </lightning-layout>
+</template>

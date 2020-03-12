@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Test Component"  icon-name="custom:custom14">
+        <lightning-datatable
+                key-field="id"
+                data={paginationList}
+                columns={columns}
+                >
+        </lightning-datatable>
+        <c-paginator select-options={selectOptions}
+            onselect={changePageSize}
+            onfirst={firstPage}
+            onprevious={previousPage}
+            onnext={nextPage}
+            onlast={lastPage}
+            >
+        </c-paginator>
+    </lightning-card>
+</template>
