@@ -6,11 +6,14 @@ import previousLbl from '@salesforce/label/c.Previous';
 import nextLbl from '@salesforce/label/c.Next';
 import lastPageLbl from '@salesforce/label/c.Last_Page';
 
-
 export default class Paginator extends LightningElement {
-   
-    @api selectOptions;
-    @api numberPages;
+
+    @api selectOptions = [
+        { label: 5, value: 5 },
+        { label: 10, value: 10 },
+        { label: 15, value: 15 }
+    ];
+    @api numberPages = 1;
     @track currentPage = 1;
     @track labels = {
         firstPageLbl,
@@ -19,20 +22,20 @@ export default class Paginator extends LightningElement {
         lastPageLbl
     }
 
-    get isHasNext() {
+    get disabledNext() {
         return this.currentPage === this.numberPages;
     }
 
-    get isHasPrevious() {
+    get disabledPrevious() {
         return this.currentPage === 1;
     }
 
-    changePageSize(event) {       
+    changePageSize(event) {
         this.currentPage = 1;
-        let value = event.target.value;        
+        let value = event.target.value;
         this.dispatchEvent(
-            new CustomEvent('pagesize', { detail: value })
-        );            
+            new CustomEvent('changepagesize', { detail: value })
+        );
     }
 
     firstPage() {
@@ -57,7 +60,7 @@ export default class Paginator extends LightningElement {
 
     setPageNumber(num) {
         this.dispatchEvent(
-            new CustomEvent('pagenumber', { detail: num })
+            new CustomEvent('changepagenumber', { detail: num })
         );
     }
 

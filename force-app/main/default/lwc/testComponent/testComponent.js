@@ -5,17 +5,17 @@ export default class TestComponent extends LightningElement {
 
     @track data;
     @track columns = [
-        {label: 'Last Name', fieldName: 'LastName', type: 'text'},
-        {label: 'First Name', fieldName: 'FirstName', type: 'text'},
-        {label: 'Phone', fieldName: 'Phone', type: 'phone'},
-        {label: 'Email', fieldName: 'Email', type: 'email'}
+        { label: 'Last Name', fieldName: 'LastName', type: 'text' },
+        { label: 'First Name', fieldName: 'FirstName', type: 'text' },
+        { label: 'Phone', fieldName: 'Phone', type: 'phone' },
+        { label: 'Email', fieldName: 'Email', type: 'email' }
     ];
     @track selectOptions;
 
     selectOptions = [
-        {label: 10, value: 10},
-        {label: 20, value: 20},
-        {label: 30, value: 30}
+        { label: 10, value: 10 },
+        { label: 20, value: 20 },
+        { label: 30, value: 30 }
     ];
 
     @track numberRecords;
@@ -41,34 +41,34 @@ export default class TestComponent extends LightningElement {
     async getDataFromApex() {
         let contacts = await getContacts();
         if (contacts) {
-            this.data = contacts;           
-        }   
+            this.data = contacts;
+        }
         await this.setFeatures();
     }
 
-    countPages() {    
+    countPages() {
         if (this.pageSize > this.numberRecords) {
             this.numberPages = 1;
         } else {
-            this.numberPages = Math.ceil(this.numberRecords / +this.pageSize);            
-        }               
+            this.numberPages = Math.ceil(this.numberRecords / +this.pageSize);
+        }
     }
 
-    setPageNumber(pageNumber) {   
-        this.countPages();  
-        let recordFrom = (pageNumber - 1) * this.pageSize;        
+    setPageNumber(pageNumber) {
+        this.countPages();
+        let recordFrom = (pageNumber - 1) * this.pageSize;
         let recordTo;
-        if((recordFrom + this.pageSize) <= this.numberRecords) {           
+        if ((recordFrom + this.pageSize) <= this.numberRecords) {
             recordTo = recordFrom + this.pageSize;
         } else {
             recordTo = (this.numberRecords - recordFrom) + recordFrom;
-        }          
+        }
         this.paginationList = [];
-        for(let i = recordFrom; i < recordTo; i++) {
-            if(this.numberRecords > i) {
+        for (let i = recordFrom; i < recordTo; i++) {
+            if (this.numberRecords > i) {
                 this.paginationList.push(this.data[i]);
             }
-        }           
+        }
     }
 
     // c-paginator management
@@ -77,7 +77,7 @@ export default class TestComponent extends LightningElement {
         this.setPageNumber(1);
     }
 
-    getPageNumber(event) {
+    changePageNumber(event) {
         this.setPageNumber(event.detail);
     }
 

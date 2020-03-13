@@ -2,35 +2,35 @@
 <template>
     <lightning-layout class="slds-p-vertical_small slds-p-horizontal_small">
         <lightning-layout-item>
-            <lightning-button label={labels.firstPageLbl} icon-name="utility:chevronleft"
-                disabled={isHasPrevious} 
-                onclick={firstPage} 
+            <lightning-button
+                label={labels.firstPageLbl}
+                icon-name="utility:chevronleft"
+                disabled={disabledPrevious}
+                onclick={firstPage}
                 class="slds-p-horizontal_xx-small"
                 >
             </lightning-button>
         </lightning-layout-item>
         <lightning-layout-item>
-            <lightning-button label={labels.previousLbl} icon-name="utility:chevronleft" 
-                disabled={isHasPrevious}  
-                onclick={previousPage} 
+            <lightning-button
+                label={labels.previousLbl}
+                icon-name="utility:chevronleft"
+                disabled={disabledPrevious}
+                onclick={previousPage}
                 class="slds-p-horizontal_xx-small"
                 >
             </lightning-button>
         </lightning-layout-item>
         <lightning-layout-item flexibility="auto">
             <div class="center center-element">
-                <select class="slds-select slds-text-color_success slds-m-left_large" onchange={changePageSize}>   
-                    <template if:true={selectOptions}>                 
-                        <template for:each={selectOptions} for:item="option">
-                            <option key={option.key} value={option.value}>{option.label}</option>
-                        </template>   
-                    </template>  
-                    <template if:false={selectOptions}>                 
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                    </template>                    
-                </select> 
+                <select 
+                    class="slds-select slds-text-color_success slds-m-left_large"
+                    onchange={changePageSize}
+                    >
+                    <template for:each={selectOptions} for:item="option">
+                        <option key={option.key} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
                 <div class="from-element">
                     <p>{currentPage}</p>
                 </div>
@@ -38,24 +38,29 @@
                     <p>{numberPages}</p>
                 </div>
             </div>
-        </lightning-layout-item>   
+        </lightning-layout-item>
         <lightning-layout-item alignment-bump="left">
-            <lightning-button label={labels.nextLbl} name="Next" icon-name="utility:chevronright" 
-                disabled={isHasNext}             
-                icon-position="right" 
-                onclick={nextPage} 
+            <lightning-button
+                label={labels.nextLbl}
+                name="Next"
+                icon-name="utility:chevronright"
+                disabled={disabledNext}
+                icon-position="right"
+                onclick={nextPage}
                 class="slds-p-horizontal_xx-small"
                 >
             </lightning-button>
         </lightning-layout-item>
         <lightning-layout-item>
-            <lightning-button label={labels.lastPageLbl} icon-name="utility:chevronright"
-                disabled={isHasNext}  
-                icon-position="right" 
-                onclick={lastPage} 
+            <lightning-button
+                label={labels.lastPageLbl}
+                icon-name="utility:chevronright"
+                disabled={disabledNext}
+                icon-position="right"
+                onclick={lastPage}
                 class="slds-p-horizontal_xx-small"
                 >
             </lightning-button>
-        </lightning-layout-item>                 
+        </lightning-layout-item>
     </lightning-layout>
 </template>
