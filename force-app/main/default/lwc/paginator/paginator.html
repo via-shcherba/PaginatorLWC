@@ -3,7 +3,7 @@
     <lightning-layout class="slds-p-vertical_small slds-p-horizontal_small">
         <lightning-layout-item>
             <lightning-button label={labels.firstPageLbl} icon-name="utility:chevronleft"
-                disabled 
+                disabled={isHasPrevious} 
                 onclick={firstPage} 
                 class="slds-p-horizontal_xx-small"
                 >
@@ -11,7 +11,7 @@
         </lightning-layout-item>
         <lightning-layout-item>
             <lightning-button label={labels.previousLbl} icon-name="utility:chevronleft" 
-                disabled 
+                disabled={isHasPrevious}  
                 onclick={previousPage} 
                 class="slds-p-horizontal_xx-small"
                 >
@@ -26,9 +26,9 @@
                         </template>   
                     </template>  
                     <template if:false={selectOptions}>                 
-                        <template for:each={selectOptionsDefault} for:item="option">
-                            <option key={option.key} value={option.value}>{option.label}</option>
-                        </template>   
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
                     </template>                    
                 </select> 
                 <div class="from-element">
@@ -40,7 +40,8 @@
             </div>
         </lightning-layout-item>   
         <lightning-layout-item alignment-bump="left">
-            <lightning-button label={labels.nextLbl} name="Next" icon-name="utility:chevronright"             
+            <lightning-button label={labels.nextLbl} name="Next" icon-name="utility:chevronright" 
+                disabled={isHasNext}             
                 icon-position="right" 
                 onclick={nextPage} 
                 class="slds-p-horizontal_xx-small"
@@ -48,7 +49,8 @@
             </lightning-button>
         </lightning-layout-item>
         <lightning-layout-item>
-            <lightning-button label={labels.lastPageLbl} icon-name="utility:chevronright" 
+            <lightning-button label={labels.lastPageLbl} icon-name="utility:chevronright"
+                disabled={isHasNext}  
                 icon-position="right" 
                 onclick={lastPage} 
                 class="slds-p-horizontal_xx-small"

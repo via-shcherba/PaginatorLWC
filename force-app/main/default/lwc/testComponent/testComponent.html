@@ -7,11 +7,9 @@
                 >
         </lightning-datatable>
         <c-paginator select-options={selectOptions}
-            onselect={changePageSize}
-            onfirst={firstPage}
-            onprevious={previousPage}
-            onnext={nextPage}
-            onlast={lastPage}
+            number-pages={numberPages}
+            onpagesize={changePageSize}
+            onpagenumber={getPageNumber}
             >
         </c-paginator>
     </lightning-card>

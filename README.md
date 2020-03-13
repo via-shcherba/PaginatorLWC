@@ -1,7 +1,6 @@
 # Paginator LWC
 ## Features:
-1. Component should get pages number via method @api setNumberPages(value) 
-Example: this.template.querySelector('c-paginator').setNumberPages(this.numberPages); 
+1. Component should get pages number via @api numberPages variable
 2. Also you can pass select options for number records picklist. If you don't pass any select options,
 they will be the default (5, 10, 15) records on page.
 Example: selectOptions = [

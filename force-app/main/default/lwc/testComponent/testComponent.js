@@ -10,21 +10,27 @@ export default class TestComponent extends LightningElement {
         {label: 'Phone', fieldName: 'Phone', type: 'phone'},
         {label: 'Email', fieldName: 'Email', type: 'email'}
     ];
-   
-    @track selectOptions = [
+    @track selectOptions;
+
+    selectOptions = [
         {label: 10, value: 10},
         {label: 20, value: 20},
         {label: 30, value: 30}
     ];
 
-    numberRecords;
-    pageSize = 10;
-    numberPages;
-    paginationList;
+    @track numberRecords;
+    @track pageSize;
+    @track numberPages;
+    @track paginationList;
 
     constructor() {
         super();
         this.getDataFromApex();
+        if (this.selectOptions) {
+            this.pageSize = this.selectOptions[0].value;
+        } else {
+            this.pageSize = 5;
+        }
     }
 
     async setFeatures() {
@@ -45,14 +51,7 @@ export default class TestComponent extends LightningElement {
             this.numberPages = 1;
         } else {
             this.numberPages = Math.ceil(this.numberRecords / +this.pageSize);            
-        }       
-        this.setNumberPages();           
-    }
-
-    // to pass on number pages to c-paginator
-    setNumberPages() {
-        this.template.querySelector('c-paginator')
-        .setNumberPages(this.numberPages);  
+        }               
     }
 
     setPageNumber(pageNumber) {   
@@ -78,19 +77,7 @@ export default class TestComponent extends LightningElement {
         this.setPageNumber(1);
     }
 
-    firstPage(event) {
-        this.setPageNumber(event.detail);
-    }
-
-    previousPage(event) {
-        this.setPageNumber(event.detail);
-    }
-
-    nextPage(event) {
-        this.setPageNumber(event.detail);
-    }
-
-    lastPage(event) {
+    getPageNumber(event) {
         this.setPageNumber(event.detail);
     }
 
